@@ -9,9 +9,21 @@
 import UIKit
 
 public struct EasyLabelStyle {
-    public let font: UIFont? = nil
-    public let fontSize: CGFloat?  = nil
+    let font: UIFont?
+    let fontSize: CGFloat?
     
-    public let textColor: UIColor? = nil
-    public let textAlignment: NSTextAlignment? = nil
+    let textColor: UIColor?
+    let textAlignment: NSTextAlignment?
+    
+    public init(
+        font: UIFont? = nil,
+        fontSize: CGFloat? = nil,
+        textColor: UIColor? = nil,
+        textAlignment: NSTextAlignment? = nil
+    ) {
+        self.font = font
+        self.fontSize = fontSize
+        self.textColor = textColor
+        self.textAlignment = textAlignment
+    }
 }

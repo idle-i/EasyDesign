@@ -21,20 +21,16 @@ public class EasyLabel: UILabel {
     
     // MARK: - Initializers
     
-    public init(text: String) {
-        super.init(frame: .zero)
+    public convenience init(text: String) {
+        self.init(frame: .zero)
         
         self.text = text
     }
     
-    public init(style: EasyLabelStyle) {
-        super.init(frame: .zero)
+    public convenience init(style: EasyLabelStyle) {
+        self.init(frame: .zero)
         
         self.viewDidSetStyle(style)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Public Methods
