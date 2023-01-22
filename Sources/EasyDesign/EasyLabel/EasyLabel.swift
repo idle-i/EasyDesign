@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-public class EasyLabel: UILabel {
+public class EasyLabel: UILabel, EasyView {
 
     // MARK: - Private Variables
     
@@ -27,17 +27,7 @@ public class EasyLabel: UILabel {
         self.text = text
     }
     
-    public convenience init(style: EasyLabelStyle) {
-        self.init(frame: .zero)
-        
-        self.viewDidSetStyle(style)
-    }
-    
     // MARK: - Public Methods
-    
-    public func updateStyle(_ style: EasyLabelStyle) {
-        viewDidSetStyle(style)
-    }
     
     public func setClickHandler(_ clickHandler: @escaping () -> Void) {
         self.clickHandler = clickHandler
@@ -49,7 +39,7 @@ public class EasyLabel: UILabel {
     
     // MARK: - Private Methods
     
-    private func viewDidSetStyle(_ style: EasyLabelStyle) {
+    internal func viewDidSetStyle(_ style: EasyLabelStyle) {
         if let font = style.font, self.font != font {
             self.font = font
         }
