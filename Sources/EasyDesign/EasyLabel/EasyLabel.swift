@@ -37,9 +37,7 @@ public class EasyLabel: UILabel, EasyView {
         self.clickHandler = nil
     }
     
-    // MARK: - Private Methods
-    
-    internal func viewDidSetStyle(_ style: EasyLabelStyle) {
+    public func viewDidSetStyle(_ style: EasyLabelStyle) {
         if let font = style.font, self.font != font {
             self.font = font
         }
@@ -56,6 +54,8 @@ public class EasyLabel: UILabel, EasyView {
             self.textAlignment = textAlignment
         }
     }
+    
+    // MARK: - Private Methods
     
     private func updateGestureRecognizer() {
         isUserInteractionEnabled = self.clickHandler != nil

@@ -7,9 +7,9 @@
 
 import UIKit
 
-protocol EasyViewStyle { }
+public protocol EasyViewStyle { }
 
-protocol EasyView: UIView {
+public protocol EasyView: UIView {
     associatedtype Style: EasyViewStyle
     
     init(style: Style)
@@ -20,7 +20,7 @@ protocol EasyView: UIView {
 
 extension EasyView {
     
-    init(style: Style) {
+    public init(style: Style) {
         self.init(frame: .zero)
         
         viewDidSetStyle(style)
@@ -29,4 +29,6 @@ extension EasyView {
     public func updateStyle(_ style: Style) {
         viewDidSetStyle(style)
     }
+    
+    public func viewDidSetStyle(_ style: Style) { }
 }

@@ -44,9 +44,7 @@ public class EasyButton: UIButton, EasyView {
         self.clickHandler = nil
     }
     
-    // MARK: - Private Methods
-    
-    internal func viewDidSetStyle(_ style: EasyButtonStyle) {
+    public func viewDidSetStyle(_ style: EasyButtonStyle) {
         if let tintColor = style.tintColor {
             self.style.tintColor = tintColor
         }
@@ -101,6 +99,8 @@ public class EasyButton: UIButton, EasyView {
         
         updateView()
     }
+    
+    // MARK: - Private Methods
     
     private func updateView() {
         self.tintColor =
