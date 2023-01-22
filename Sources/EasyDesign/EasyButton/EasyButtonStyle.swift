@@ -8,6 +8,7 @@
 import UIKit
 
 public struct EasyButtonStyle: EasyViewStyle {
+    let cornerRaduis: CGFloat?
     var tintColor: UIColor?
     var tintColorDisabled: UIColor?
     var tintColorSelected: UIColor?
@@ -23,6 +24,7 @@ public struct EasyButtonStyle: EasyViewStyle {
     let horizontalAlignment: UIControl.ContentHorizontalAlignment?
     
     public init(
+        cornerRaduis: CGFloat? = nil,
         tintColor: UIColor? = nil,
         tintColorDisabled: UIColor? = nil,
         tintColorSelected: UIColor? = nil,
@@ -37,6 +39,7 @@ public struct EasyButtonStyle: EasyViewStyle {
         verticalAlignment: UIControl.ContentVerticalAlignment? = nil,
         horizontalAlignment: UIControl.ContentHorizontalAlignment? = nil
     ) {
+        self.cornerRaduis = cornerRaduis
         self.tintColor = tintColor
         self.tintColorDisabled = tintColorDisabled
         self.tintColorSelected = tintColorSelected

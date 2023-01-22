@@ -38,13 +38,29 @@ public class EasyButton: UIButton, EasyView {
     
     public func setClickHandler(_ clickHandler: @escaping () -> Void) {
         self.clickHandler = clickHandler
+        
+        self.addTarget(
+            self,
+            action: #selector(tapActionHandle),
+            for: .touchUpInside
+        )
     }
     
     public func removeClickHandler() {
         self.clickHandler = nil
+        
+        self.removeTarget(
+            self,
+            action: #selector(tapActionHandle),
+            for: .touchUpInside
+        )
     }
     
     public func viewDidSetStyle(_ style: EasyButtonStyle) {
+        if let cornerRaduis = style.cornerRaduis, self.layer.cornerRadius != cornerRaduis {
+            self.layer.cornerRadius = cornerRaduis
+        }
+        
         if let tintColor = style.tintColor {
             self.style.tintColor = tintColor
         }
@@ -113,11 +129,12 @@ public class EasyButton: UIButton, EasyView {
             (isHighlighted) ? style.backgroundColorSelected :
             style.backgroundColor
         
-        self.setTitleColor(
-            (!isEnabled) ? style.textColorDisabled :
-            (isHighlighted) ? style.textColorSelected :
-            style.textColor,
-            for: .normal
-        )
+        self.setTitleColor(style.textColor, for: .normal)
+        self.setTitleColor(style.textColorSelected, for: .highlighted)
+        self.setTitleColor(style.textColorDisabled, for: .disabled)
     }
+    
+    // MARK: - Callbacks
+    
+    @objc private func tapActionHandle() { self.clickHandler?() }
 }
