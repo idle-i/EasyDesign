@@ -8,10 +8,9 @@
 
 import UIKit
 
-public struct EasyLabelStyle {
+public struct EasyLabelStyle: EasyViewStyle {
     let font: UIFont?
     let fontSize: CGFloat?
-    
     let textColor: UIColor?
     let textAlignment: NSTextAlignment?
     

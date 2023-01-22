@@ -25,10 +25,6 @@ let package = Package(
         .target(
             name: "EasyDesign",
             dependencies: []
-        ),
-        .testTarget(
-            name: "EasyDesignTests",
-            dependencies: ["EasyDesign"]
-        ),
+        )
     ]
 )
