@@ -1,5 +1,5 @@
 //
-//  EasyButtonStyle.swift
+//  EasyButtonStyle.
 //
 //  Struct containing style properties for the EasyButton class
 //
