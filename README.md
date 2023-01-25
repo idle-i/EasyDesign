@@ -32,4 +32,5 @@ Each custom class inherits from the UIKit base class. This means that they can s
 [Apache 2.0](LICENSE)
 
 ## Author
-- [idle-i: GitHub](https://github.com/idle-i)
+- [GitHub](https://github.com/idle-i)
+- [Telegram](https://t.me/idle_i)

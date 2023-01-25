@@ -1,6 +1,7 @@
 //
-//  EasyButtonStyle.swift
-//  
+//  EasyButtonStyle.
+//
+//  Struct containing style properties for the EasyButton class
 //
 //  Created by Daniil Shchepkin on 22.01.2023.
 //

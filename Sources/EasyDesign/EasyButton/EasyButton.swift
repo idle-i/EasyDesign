@@ -1,6 +1,7 @@
 //
 //  EasyButton.swift
-//  
+//
+//  A class that represents a custom implementation of the UIButton class from UIKit
 //
 //  Created by Daniil Shchepkin on 22.01.2023.
 //
