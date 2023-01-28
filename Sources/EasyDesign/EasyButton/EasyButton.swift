@@ -46,16 +46,8 @@ public class EasyButton: UIButton, EasyView {
     
     // MARK: - Initializers
     
-    public convenience init(text: String) {
-        self.init(frame: .zero)
-        
-        self.setTitle(text, for: .normal)
-    }
-    
-    // MARK: - Public Methods
-    
-    public func setClickHandler(_ clickHandler: @escaping () -> Void) {
-        self.clickHandler = clickHandler
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
         
         self.addTarget(
             self,
@@ -64,14 +56,24 @@ public class EasyButton: UIButton, EasyView {
         )
     }
     
+    public convenience init(text: String) {
+        self.init(frame: .zero)
+        
+        self.setTitle(text, for: .normal)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Public Methods
+    
+    public func setClickHandler(_ clickHandler: @escaping () -> Void) {
+        self.clickHandler = clickHandler
+    }
+    
     public func removeClickHandler() {
         self.clickHandler = nil
-        
-        self.removeTarget(
-            self,
-            action: #selector(tapActionHandle),
-            for: .touchUpInside
-        )
     }
     
     public func viewDidSetStyle(_ style: EasyButtonStyle) {
