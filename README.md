@@ -19,6 +19,7 @@ Each custom class inherits from the UIKit base class. This means that they can s
     - Custom style setting (easier than standard)
     - Easily add a click event handler
     - Customize the zoom effect on press event
+    - Set up vibration feedback
 
 ## Changelog
 
@@ -31,6 +32,10 @@ Each custom class inherits from the UIKit base class. This means that they can s
 - v 0.2.1
     - Added zoom function for pressing EasyButton
     - Minor fixes
+
+- v 0.2.2
+    - Added vibration feedback for pressing EasyButton
+    - EasyButton press handle fixes
 
 ## License
 
