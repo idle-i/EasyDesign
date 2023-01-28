@@ -168,12 +168,14 @@ public class EasyButton: UIButton, EasyView {
     }
     
     private func performVibration() {
-        UIImpactFeedbackGenerator(
+        let generator = UIImpactFeedbackGenerator(
             style:
                 (self.vibrationIntensity == .light) ? .light :
                 (self.vibrationIntensity == .medium) ? .medium :
                 .heavy
-        ).impactOccurred()
+        )
+        generator.prepare()
+        generator.impactOccurred()
     }
     
     // MARK: - Callbacks
