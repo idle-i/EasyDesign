@@ -8,6 +8,12 @@
 
 import UIKit
 
+public enum EasyButtonVibrationIntensity {
+    case light
+    case medium
+    case heavy
+}
+
 @IBDesignable
 public class EasyButton: UIButton, EasyView {
     
@@ -29,6 +35,9 @@ public class EasyButton: UIButton, EasyView {
     public var zoomFactor: CGFloat = 1.0
     public var zoomDuration: Double = 0.3
     
+    public var isVibrationEnabled: Bool = false
+    public var vibrationIntensity: EasyButtonVibrationIntensity = .light
+    
     // MARK: - Private Variables
     
     private var style: EasyButtonStyle = EasyButtonStyle()
@@ -43,26 +52,26 @@ public class EasyButton: UIButton, EasyView {
         self.setTitle(text, for: .normal)
     }
     
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.addTapHandler()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        self.addTapHandler()
+    }
+    
     // MARK: - Public Methods
     
     public func setClickHandler(_ clickHandler: @escaping () -> Void) {
         self.clickHandler = clickHandler
-        
-        self.addTarget(
-            self,
-            action: #selector(tapActionHandle),
-            for: .touchUpInside
-        )
     }
     
     public func removeClickHandler() {
         self.clickHandler = nil
-        
-        self.removeTarget(
-            self,
-            action: #selector(tapActionHandle),
-            for: .touchUpInside
-        )
     }
     
     public func viewDidSetStyle(_ style: EasyButtonStyle) {
@@ -127,6 +136,14 @@ public class EasyButton: UIButton, EasyView {
     
     // MARK: - Private Methods
     
+    private func addTapHandler() {
+        self.addTarget(
+            self,
+            action: #selector(tapActionHandle),
+            for: .touchUpInside
+        )
+    }
+    
     private func updateView() {
         self.tintColor =
             (!self.isEnabled) ? self.style.tintColorDisabled :
@@ -144,19 +161,37 @@ public class EasyButton: UIButton, EasyView {
     }
     
     private func viewDidHighlight() {
-        if self.isZoomEnabled {
-            UIView.animate(withDuration: self.zoomDuration) { [weak self] in
-                guard let self = self else { return }
-                
-                self.transform = CGAffineTransform(
-                    scaleX: self.isHighlighted ? self.zoomFactor : 1.0,
-                    y: self.isHighlighted ? self.zoomFactor : 1.0
-                )
-            }
+        if self.isZoomEnabled { self.zoomAnimation() }
+    }
+    
+    private func zoomAnimation() {
+        UIView.animate(withDuration: self.zoomDuration) { [weak self] in
+            guard let self = self else { return }
+            
+            self.transform = CGAffineTransform(
+                scaleX: self.isHighlighted ? self.zoomFactor : 1.0,
+                y: self.isHighlighted ? self.zoomFactor : 1.0
+            )
         }
+    }
+    
+    private func performVibration() {
+        let generator = UIImpactFeedbackGenerator(
+            style:
+                (self.vibrationIntensity == .light) ? .light :
+                (self.vibrationIntensity == .medium) ? .medium :
+                .heavy
+        )
+        generator.prepare()
+        generator.impactOccurred()
     }
     
     // MARK: - Callbacks
     
-    @objc private func tapActionHandle() { self.clickHandler?() }
+    @objc private func tapActionHandle() {
+        if self.isVibrationEnabled { self.performVibration() }
+        
+        self.clickHandler?()
+    }
 }
+
