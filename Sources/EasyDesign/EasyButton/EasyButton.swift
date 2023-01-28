@@ -27,7 +27,7 @@ public class EasyButton: UIButton, EasyView {
     
     public var isZoomEnabled: Bool = false
     public var zoomFactor: CGFloat = 1.0
-    public var zoomDuration: Double = 0.5
+    public var zoomDuration: Double = 0.3
     
     // MARK: - Private Variables
     
