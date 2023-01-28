@@ -18,8 +18,16 @@ public class EasyButton: UIButton, EasyView {
     }
     
     public override var isHighlighted: Bool {
-        didSet { self.updateView() }
+        didSet {
+            self.viewDidHighlight()
+            
+            self.updateView()
+        }
     }
+    
+    public var isZoomEnabled: Bool = false
+    public var zoomFactor: CGFloat = 1.0
+    public var zoomDuration: Double = 0.5
     
     // MARK: - Private Variables
     
@@ -114,25 +122,38 @@ public class EasyButton: UIButton, EasyView {
             self.contentHorizontalAlignment = horizontalAlignment
         }
         
-        updateView()
+        self.updateView()
     }
     
     // MARK: - Private Methods
     
     private func updateView() {
         self.tintColor =
-            (!isEnabled) ? style.tintColorDisabled :
-            (isHighlighted) ? style.tintColorSelected :
-            style.tintColor
+            (!self.isEnabled) ? self.style.tintColorDisabled :
+            (self.isHighlighted) ? self.style.tintColorSelected :
+            self.style.tintColor
         
         self.backgroundColor =
-            (!isEnabled) ? style.backgroundColorDisabled :
-            (isHighlighted) ? style.backgroundColorSelected :
-            style.backgroundColor
+            (!self.isEnabled) ? self.style.backgroundColorDisabled :
+            (self.isHighlighted) ? self.style.backgroundColorSelected :
+            self.style.backgroundColor
         
-        self.setTitleColor(style.textColor, for: .normal)
-        self.setTitleColor(style.textColorSelected, for: .highlighted)
-        self.setTitleColor(style.textColorDisabled, for: .disabled)
+        self.setTitleColor(self.style.textColor, for: .normal)
+        self.setTitleColor(self.style.textColorSelected, for: .highlighted)
+        self.setTitleColor(self.style.textColorDisabled, for: .disabled)
+    }
+    
+    private func viewDidHighlight() {
+        if self.isZoomEnabled {
+            UIView.animate(withDuration: self.zoomDuration) { [weak self] in
+                guard let self = self else { return }
+                
+                self.transform = CGAffineTransform(
+                    scaleX: self.isHighlighted ? self.zoomFactor : 1.0,
+                    y: self.isHighlighted ? self.zoomFactor : 1.0
+                )
+            }
+        }
     }
     
     // MARK: - Callbacks
