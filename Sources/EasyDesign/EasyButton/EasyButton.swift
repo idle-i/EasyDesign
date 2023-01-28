@@ -52,16 +52,16 @@ public class EasyButton: UIButton, EasyView {
         self.setTitle(text, for: .normal)
     }
     
-    // MARK: - Lifecycle Methods
-    
-    public override func awakeFromNib() {
-        super.awakeFromNib()
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
         
-        self.addTarget(
-            self,
-            action: #selector(tapActionHandle),
-            for: .touchUpInside
-        )
+        self.addTapHandler()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        
+        self.addTapHandler()
     }
     
     // MARK: - Public Methods
@@ -135,6 +135,14 @@ public class EasyButton: UIButton, EasyView {
     }
     
     // MARK: - Private Methods
+    
+    private func addTapHandler() {
+        self.addTarget(
+            self,
+            action: #selector(tapActionHandle),
+            for: .touchUpInside
+        )
+    }
     
     private func updateView() {
         self.tintColor =
