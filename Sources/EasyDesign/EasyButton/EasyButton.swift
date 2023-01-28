@@ -46,24 +46,22 @@ public class EasyButton: UIButton, EasyView {
     
     // MARK: - Initializers
     
-    public override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        self.addTarget(
-            self,
-            action: #selector(tapActionHandle),
-            for: .touchUpInside
-        )
-    }
-    
     public convenience init(text: String) {
         self.init(frame: .zero)
         
         self.setTitle(text, for: .normal)
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    // MARK: - Lifecycle Methods
+    
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.addTarget(
+            self,
+            action: #selector(tapActionHandle),
+            for: .touchUpInside
+        )
     }
     
     // MARK: - Public Methods
