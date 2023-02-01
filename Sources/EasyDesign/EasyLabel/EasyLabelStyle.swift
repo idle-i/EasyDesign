@@ -13,16 +13,19 @@ public struct EasyLabelStyle: EasyViewStyle {
     let fontSize: CGFloat?
     let textColor: UIColor?
     let textAlignment: NSTextAlignment?
+    let linksColor: UIColor?
     
     public init(
         font: UIFont? = nil,
         fontSize: CGFloat? = nil,
         textColor: UIColor? = nil,
-        textAlignment: NSTextAlignment? = nil
+        textAlignment: NSTextAlignment? = nil,
+        linksColor: UIColor? = nil
     ) {
         self.font = font
         self.fontSize = fontSize
         self.textColor = textColor
         self.textAlignment = textAlignment
+        self.linksColor = linksColor
     }
 }
