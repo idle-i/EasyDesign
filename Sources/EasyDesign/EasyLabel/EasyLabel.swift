@@ -113,11 +113,13 @@ public class EasyLabel: UILabel, EasyView {
     @objc private func tapActionHandle(_ gesture: UITapGestureRecognizer) {
         if isLinksEnabled {
             self.getClickedLink(gesture: gesture) { url in
-                if let url = url { self.linkClickHandler?(url) }
+                if let url = url {
+                    self.linkClickHandler?(url)
+                } else {
+                    self.clickHandler?()
+                }
             }
-        } else {
-            self.clickHandler?()
-        }
+        } else { self.clickHandler?() }
     }
 }
 
