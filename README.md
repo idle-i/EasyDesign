@@ -14,6 +14,7 @@ Each custom class inherits from the UIKit base class. This means that they can s
 - EasyLabel
     - Custom style setting (easier than standard)
     - Easily add a click event handler
+    - Links support (highlight, click handler)
 
 - EasyButton
     - Custom style setting (easier than standard)
@@ -36,6 +37,9 @@ Each custom class inherits from the UIKit base class. This means that they can s
 - v 0.2.2
     - Added vibration feedback for pressing EasyButton
     - EasyButton press handle fixes
+
+- v 0.2.3
+    - Added links support to EasyLabel
 
 ## License
 
