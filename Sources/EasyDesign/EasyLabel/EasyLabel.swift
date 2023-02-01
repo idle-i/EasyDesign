@@ -158,7 +158,7 @@ extension EasyLabel {
     }
     
     private func getClickedLink(gesture: UITapGestureRecognizer, completion: (_ url: URL?) -> Void) {
-//        guard let attributedText = self.attributedText else { return completion(nil) }
+        guard let attributedText = self.attributedText else { return completion(nil) }
         
         let textContainer = NSTextContainer(size: self.frame.size)
         textContainer.lineFragmentPadding = 0.0
@@ -168,8 +168,8 @@ extension EasyLabel {
         let layoutManager = NSLayoutManager()
         layoutManager.addTextContainer(textContainer)
         
-//        let textStorage = NSTextStorage(attributedString: attributedText)
-//        textStorage.addLayoutManager(layoutManager)
+        let textStorage = NSTextStorage(attributedString: attributedText)
+        textStorage.addLayoutManager(layoutManager)
         
         let locationOfTouchInLabel = gesture.location(in: self)
         let textBounds = layoutManager.usedRect(for: textContainer)
